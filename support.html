@@ -22,7 +22,7 @@
 .support-steps{padding-left:24px}.support-steps li{padding-left:8px;margin:14px 0}
 .ns-support strong{color:var(--ink)}
 .support-note{border-left:3px solid var(--gold);padding:8px 18px;background:var(--paper)}
-.ns-support a{overflow-wrap:anywhere}.ns-support .ns-actions{margin:22px 0 12px}
+summary{cursor:pointer;color:var(--ink);font-weight:700;padding:14px 0}details{border-block:1px solid var(--line);margin-top:20px}summary:focus-visible{outline:3px solid var(--gold);outline-offset:4px}.ns-support a{overflow-wrap:anywhere}.ns-support .ns-actions{margin:22px 0 12px}
 @media(max-width:600px){.support-platforms{grid-template-columns:1fr}.ns-support{padding-top:30px}}
 </style>
 </head>
@@ -35,38 +35,38 @@
 <main id="content" class="ns-wrap ns-support">
 <p class="ns-eyebrow">NORTHSTAR CUSTOMER SUPPORT</p>
 <h1>Remote help.<br>You're in control.</h1>
-<p class="intro">When Austin is ready to help, use RustDesk to share your screen and approve remote control of your computer.</p>
-<p>This page helps you get set up. The support session takes place in the RustDesk app.</p>
+<p class="intro">Austin can help you from here. Download the support app, open it, and approve his connection.</p>
 <section class="support-section" aria-labelledby="download">
-<h2 id="download">1. Download RustDesk</h2>
-<p>Use the official RustDesk release page on GitHub. In its download table, choose your computer's operating system. The installer comes directly from RustDesk's official repository.</p>
-<div class="ns-actions"><a class="ns-button" href="https://github.com/rustdesk/rustdesk/releases/latest" target="_blank" rel="noopener noreferrer">Official RustDesk downloads ↗</a></div>
-<p><small>Opens the latest release in a new tab. No GitHub account is needed to download.</small></p>
+<h2 id="download">1. Download the support app</h2>
+<p>Choose your computer below. Downloads come directly from RustDesk, the app NorthStar uses for remote help.</p>
 <div class="support-platforms">
-<article><h3>Mac</h3><p>Choose the Mac download: <strong>AArch64 (ARM64)</strong> for Apple silicon, or <strong>x86-64</strong> for Intel.</p><p>Check <strong>Apple menu → About This Mac</strong>: “Chip” identifies Apple silicon; “Processor” identifies Intel.</p><p>Open the <strong>.dmg</strong> and drag RustDesk into <strong>Applications</strong>, then open it.</p></article>
-<article><h3>Windows</h3><p>For most PCs, choose the Windows <strong>x86-64 EXE</strong>. Use ARM64 only if your PC has an ARM processor.</p><p>Open the downloaded <strong>.exe</strong> and follow the app's prompts. Austin can help if you're unsure which download to choose.</p></article>
+<article><h3>I'm on a Mac</h3>
+<p>Click the Apple menu at the top left, then <strong>About This Mac</strong>. Does it say Apple or Intel?</p>
+<div class="ns-actions"><a class="ns-button" href="https://github.com/rustdesk/rustdesk/releases/download/1.5.3/rustdesk-1.5.3-aarch64.dmg">Download for Apple chip</a><a class="ns-button ns-outline" href="https://github.com/rustdesk/rustdesk/releases/download/1.5.3/rustdesk-1.5.3-x86_64.dmg">Download for Intel chip</a></div>
+<p><small>Not sure? Call Austin and he'll help you choose.</small></p></article>
+<article><h3>I'm on Windows</h3><p>Use this download for most Windows computers.</p><div class="ns-actions"><a class="ns-button" href="https://github.com/rustdesk/rustdesk/releases/download/1.5.3/rustdesk-1.5.3-x86_64.exe">Download for Windows</a></div><p><small>Have a Windows computer with an ARM chip? Ask Austin for the right download.</small></p></article>
 </div>
 </section>
+<section class="support-section" aria-labelledby="open">
+<h2 id="open">2. Open it</h2>
+<p>Open the file you downloaded. <strong>On a Mac, drag RustDesk into Applications</strong>, then open RustDesk from there. On Windows, open the download and follow the prompts.</p>
+<details><summary>My Mac is asking for permission</summary>
+<p>This lets Austin see your screen and help with your mouse and keyboard.</p>
+<ol class="support-steps"><li>Open <strong>System Settings → Privacy &amp; Security</strong>.</li><li>Find <strong>Screen Recording</strong> (sometimes called Screen &amp; System Audio Recording) and turn on RustDesk.</li><li>Do the same under <strong>Accessibility</strong>. If RustDesk asks for <strong>Input Monitoring</strong>, turn it on there too.</li><li>If asked, quit and reopen RustDesk.</li></ol>
+<p>Austin can walk you through this on the phone.</p>
+</details>
+</section>
 <section class="support-section" aria-labelledby="connect">
-<h2 id="connect">2. Approve your session</h2>
-<ol class="support-steps">
-<li>Keep RustDesk open and give <strong>Austin your RustDesk ID</strong> over your existing call or conversation.</li>
-<li>When Austin connects, review the request and <strong>accept the session</strong>. Allow screen viewing and keyboard/mouse control for the work you want help with.</li>
-<li>Stay at your computer while Austin helps. You can <strong>disconnect at any time</strong> in RustDesk.</li>
-</ol>
-<p class="support-note">For this support visit, use session approval. You don't need to set a permanent password or enable unattended access.</p>
+<h2 id="connect">3. Let Austin connect</h2>
+<p>Tell Austin the <strong>ID number shown in RustDesk</strong>. When his connection request appears, choose <strong>Accept</strong>.</p>
+<p>Stay at your computer while he helps. To finish, <strong>disconnect in RustDesk</strong> and quit the app.</p>
+<p class="support-note">You're in control. You can end the session whenever you want. You don't need to set up a permanent password.</p>
 </section>
-<section class="support-section" aria-labelledby="mac-permissions">
-<h2 id="mac-permissions">On a Mac: allow screen sharing and control</h2>
-<p>Open <strong>System Settings → Privacy &amp; Security</strong> and enable RustDesk in:</p>
-<ul><li><strong>Screen Recording</strong> (or Screen &amp; System Audio Recording), so Austin can see your screen.</li><li><strong>Accessibility</strong>, so Austin can use the mouse and keyboard.</li><li><strong>Input Monitoring</strong>, if RustDesk requests it or input still doesn't work.</li></ul>
-<p>Follow any prompt to quit and reopen RustDesk after changing permissions.</p>
-<p><a href="https://rustdesk.com/docs/en/client/mac/" target="_blank" rel="noopener noreferrer">Official Mac setup guide ↗</a></p>
-</section>
-<section class="support-section" aria-labelledby="finish">
-<h2 id="finish">3. Finish and disconnect</h2>
-<p>End the session in RustDesk when the work is complete, then quit the app. You can remove RustDesk and revoke its Mac permissions if you no longer need it.</p>
-<p>Need a hand getting started? <a href="tel:+18152959828">Call Austin: 815-295-9828</a>.</p>
+<section class="support-section" aria-labelledby="help">
+<h2 id="help">Need a hand?</h2>
+<p>Call Austin and he'll guide you through it.</p>
+<div class="ns-actions"><a class="ns-button" href="tel:+18152959828">Call 815-295-9828</a></div>
+<details><summary>Download isn't working?</summary><p><a href="https://github.com/rustdesk/rustdesk/releases/latest" target="_blank" rel="noopener noreferrer">Open RustDesk's latest official downloads</a>, or call Austin for help.</p></details>
 </section>
 </main>
 <footer class="ns-footer"><strong>NORTHSTAR</strong><span>IT SERVICES</span><p>Guided by reliability.</p><a href="/northstar.html">← Back to NorthStar</a></footer>
