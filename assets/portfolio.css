@@ -107,3 +107,93 @@ body{font-size:17px;line-height:1.7;--muted:#65565c}
 .punch-gallery #capture-enlarge{background:#14151d;min-height:260px;display:flex;align-items:center;justify-content:center}
 @media(max-width:760px){.punch-card-capture{min-height:0;aspect-ratio:16/11}.punch-gallery #capture-enlarge{min-height:180px}.punch-product-art .concept-label{font-size:12px}}
 .punch-gallery #capture-image{aspect-ratio:auto}
+
+/* Navigation V2: Projects dropdown */
+.main-nav {
+  align-items: center;
+}
+
+.nav-menu {
+  position: relative;
+}
+
+.nav-menu summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 9px 16px;
+  font-size: 13px;
+  font-weight: 700;
+  border-radius: 6px;
+}
+
+.nav-menu summary::-webkit-details-marker {
+  display: none;
+}
+
+.nav-menu summary::after {
+  content: "⌄";
+  margin-left: 7px;
+  color: var(--scarlet);
+}
+
+.nav-menu summary:hover,
+.nav-menu[open] summary {
+  background: var(--tint);
+  color: var(--scarlet);
+}
+
+.nav-submenu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 20;
+  min-width: 205px;
+  padding: 8px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  box-shadow: 0 12px 28px #29232a20;
+}
+
+.nav-submenu a {
+  display: block;
+  padding: 11px 13px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.nav-submenu a:hover,
+.nav-submenu a:focus-visible {
+  background: var(--tint);
+  color: var(--scarlet);
+  border-radius: 5px;
+}
+
+@media (max-width: 760px) {
+  .nav-menu summary {
+    padding: 9px 12px;
+    font-size: 12px;
+  }
+
+  .nav-submenu {
+    left: auto;
+    right: 0;
+  }
+}
+
+
+/* Navigation V2: consistent typography */
+.main-nav > a,
+.main-nav .nav-menu > summary {
+  font-family: Manrope, sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+@media (max-width: 760px) {
+  .main-nav > a,
+  .main-nav .nav-menu > summary {
+    font-size: 12px;
+  }
+}
