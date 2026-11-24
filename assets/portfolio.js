@@ -76,7 +76,7 @@
 })();
 
 (() => {
- const form=document.getElementById('contact-form');
+ const form=document.querySelector('#contact-form:not([data-portfolio-contact])');
  if(!form)return;
  const status=document.getElementById('contact-status');
  const button=form.querySelector('button[type="submit"]');
@@ -92,5 +92,55 @@
    if(response.ok)form.reset();
   }catch(error){status.textContent='Could not reach the server. Your message has not been sent. Please try again or use the contact details above.';}
   finally{sending=false;button.disabled=false;}
+ });
+})();
+
+(() => {
+ const form = document.querySelector('form[data-portfolio-contact]');
+ if (!form) return;
+
+ const endpoint = form.action;
+ const status = document.getElementById('contact-status');
+ const button = form.querySelector('button[type="submit"]');
+ if (!/^https:\/\/formspree\.io\/f\/[a-z0-9]+$/.test(endpoint)) {
+  form.addEventListener('submit', event => event.preventDefault());
+  return;
+ }
+
+ status.textContent = '';
+ button.disabled = false;
+ form.addEventListener('submit', async event => {
+  event.preventDefault();
+  if (button.disabled || !form.reportValidity()) return;
+
+  button.disabled = true;
+  status.textContent = 'Sending your message…';
+  try {
+   const response = await fetch(endpoint, {
+    method: 'POST',
+    headers: { Accept: 'application/json' },
+    body: new FormData(form),
+    signal: AbortSignal.timeout(15000),
+   });
+
+   if (!response.ok) {
+    status.textContent = response.status === 429
+     ? 'The form is temporarily busy. Please try again later or use the email link on this page.'
+     : 'The form could not accept your message. Please try again or use the email link on this page.';
+    return;
+   }
+
+   const result = await response.json();
+   if (typeof result?.next !== 'string' || !result.next) {
+    throw new Error('Missing submission confirmation');
+   }
+
+   form.reset();
+   status.textContent = 'Your message was submitted. Thank you.';
+  } catch {
+   status.textContent = 'We could not confirm your submission. Please use the email link on this page or try again.';
+  } finally {
+   button.disabled = false;
+  }
  });
 })();
