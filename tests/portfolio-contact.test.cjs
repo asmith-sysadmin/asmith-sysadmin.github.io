@@ -20,10 +20,10 @@ const fields = {
  _gotcha: '',
 };
 
-function loadForm(fetch, { action = endpoint, valid = true } = {}) {
+function loadForm(fetch, { action = endpoint, valid = true, payload = fields } = {}) {
  const status = { textContent: 'Online sending is unavailable.' };
  const button = { disabled: true };
- const values = { ...fields };
+ const values = { ...payload };
  let handler;
  let resets = 0;
  const form = {
@@ -91,6 +91,26 @@ test('posts all form fields once and clears them only after acceptance', async (
  assert.equal(page.resets, 1);
  assert.equal(page.values.message, '');
  assert.equal(page.button.disabled, false);
+});
+
+test('routes Northstar quotes through the portfolio endpoint with a source label', async () => {
+ const quoteForm = read('northstar.html').match(/<form\b[^>]*data-portfolio-contact[^>]*>[\s\S]*?<\/form>/)[0];
+ const quoteAction = quoteForm.match(/action="([^"]+)"/)[1];
+ const source = quoteForm.match(/type="hidden" name="source" value="([^"]+)"/)[1];
+ assert.equal(quoteAction, action.href);
+ assert.equal(source, 'Northstar consulting quote');
+ assert.match(quoteForm, /name="_gotcha"/);
+ assert.match(quoteForm, /<button\b[^>]*type="submit" disabled>/);
+
+ const payload = { ...fields, source };
+ const page = loadForm((url, request) => {
+  assert.equal(url, quoteAction);
+  assert.deepEqual(Object.fromEntries(request.body), payload);
+  return Response.json({ next: '/thanks', ok: true });
+ }, { action: quoteAction, payload });
+ await page.submit();
+ assert.match(page.status.textContent, /Your message was submitted/);
+ assert.equal(page.resets, 1);
 });
 
 test('blocks an unconfigured or invalid form before making a request', async () => {

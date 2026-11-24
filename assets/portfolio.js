@@ -76,26 +76,6 @@
 })();
 
 (() => {
- const form=document.querySelector('#contact-form:not([data-portfolio-contact])');
- if(!form)return;
- const status=document.getElementById('contact-status');
- const button=form.querySelector('button[type="submit"]');
- let sending=false;
- form.addEventListener('submit',async event=>{
-  event.preventDefault();
-  if(sending||!form.reportValidity())return;
-  sending=true;button.disabled=true;status.textContent='Sending your message…';
-  try{
-   const response=await fetch('/contact/send',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(new FormData(form)).toString()});
-   const text=await response.text();
-   status.textContent=text;
-   if(response.ok)form.reset();
-  }catch(error){status.textContent='Could not reach the server. Your message has not been sent. Please try again or use the contact details above.';}
-  finally{sending=false;button.disabled=false;}
- });
-})();
-
-(() => {
  const form = document.querySelector('form[data-portfolio-contact]');
  if (!form) return;
 
